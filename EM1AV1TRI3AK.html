@@ -3,302 +3,498 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AV 1 - English Regular - Review</title>
-    <!-- Loads Tailwind CSS for modern and responsive styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Sets Inter font as default -->
+    <title>AV1 1st Year - Review Key</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7f9fb;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9; /* Light lavender background */
+            color: #333;
         }
-        .answer {
-            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             overflow: hidden;
-            max-height: 0;
-            opacity: 0;
-            padding-top: 0;
         }
-        .answer.active {
-            max-height: 500px; /* Value large enough for most answers */
-            opacity: 1;
-            padding-top: 0.5rem;
+        header {
+            background-color: #6a1b9a; /* Deep Purple */
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
         }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .section {
+            padding: 25px 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        h2 {
+            font-size: 1.5em;
+            color: #6a1b9a; /* Deep Purple */
+            border-bottom: 2px solid #c2185b; /* Magenta */
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+        .question-block {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+        .question-text {
+            font-size: 1.05em;
+            font-weight: 500;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+        
+        /* === Multiple Choice Styles === */
+        .options-list {
+            list-style-type: lower-alpha; /* a, b, c, d */
+            padding-left: 30px;
+            margin: 10px 0;
+        }
+        .options-list li {
+            padding: 8px;
+            margin: 4px 0;
+            border-radius: 5px;
+            border: 1px solid transparent;
+            transition: all 0.2s ease-in-out;
+        }
+        .options-list.revealed .correct-option {
+            background-color: #fffde7; /* Light Yellow */
+            border-color: #f9a825; /* Gold */
+            font-weight: bold;
+        }
+
+        /* === Subjective Answer Reveal Styles === */
+        .answer {
+            display: none; /* Hidden by default */
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #fffde7; /* Light Yellow */
+            border: 1px solid #f9a825; /* Gold */
+            border-radius: 5px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        .original-sentence, .article-box {
+            font-size: 1.05em;
+            font-style: italic;
+            color: #555;
+            background-color: #f0f0f0;
+            padding: 12px 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        .article-box {
+            font-style: normal;
+        }
+        
+        /* === One-by-one Reveal Styles === */
+        .question-line {
+            font-size: 1.05em;
+            line-height: 1.9; 
+            margin-bottom: 14px;
+        }
+        .gap {
+            font-weight: bold;
+            color: #555;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            padding: 0 10px;
+        }
+        .inline-answer {
+            display: none;
+            font-weight: bold;
+            color: #e65100; /* Dark Orange */
+            background-color: #fffde7; /* Light Yellow */
+            padding: 3px 6px;
+            border-radius: 4px;
+            margin-left: 5px;
+            border: 1px solid #f9a825; /* Gold */
+        }
+        .word-bank {
+            font-family: Arial, sans-serif;
+            background-color: #eee;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            line-height: 1.8;
+            font-size: 0.95em;
+            border: 1px solid #ddd;
+            column-count: 2; /* Split word bank into two columns */
+        }
+        
+        /* === Button Styles === */
+        button {
+            background-color: #c2185b; /* Magenta */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #880e4f; /* Darker Magenta */
+        }
+        button.inline-btn {
+            padding: 4px 10px;
+            font-size: 0.8em;
+            margin-left: 5px;
+            margin-right: 2px;
+            font-weight: normal;
+        }
+
     </style>
 </head>
-<body class="p-4 sm:p-8">
+<body>
 
-    <div class="max-w-4xl mx-auto bg-white shadow-xl rounded-2xl p-6 sm:p-10">
-
-        <!-- Main Title -->
-        <header class="text-center mb-10">
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-blue-700">AV 1 - English Regular</h1>
-            <p class="text-xl text-gray-600 mt-2">Interactive Content Review</p>
+    <div class="container">
+        <header>
+            <h1>AV1 REGULAR - 1st High School</h1>
         </header>
 
-        <!-- Reading Section (With TEXT I and map image) -->
-        <section class="mb-10 p-4 border-l-4 border-blue-500 bg-blue-50 rounded-lg">
-            <h2 class="text-2xl font-semibold text-blue-800 mb-3">Reading</h2>
-            <h3 class="text-xl font-medium text-gray-700 mb-4">TEXT I: How long can you expect to live?</h3>
+        <div class="section">
+            <h2>Reading (Questions 1-3)</h2>
 
-            <!-- Map Image (Placeholder) -->
-            <div class="mb-4">
-                <!-- Using a descriptive placeholder since external image URLs are not available -->
-                <img src="https://placehold.co/800x400/1e40af/ffffff?text=World+Map+Life+Expectancy" alt="World Map illustrating life expectancy by country." class="w-full h-auto rounded-lg shadow-md border-2 border-gray-100">
-                <p class="text-sm text-gray-500 mt-1 italic">Life Expectancy at Birth (Source: CIA World Factbook)</p>
+            <div class="article-box">
+                <b>TEXT I - How long can you expect to live?</b>
+                <br><br>
+                Life expectancy, the number of years people generally live, has changed considerably over time. For example, if you were a male child born in the UK a thousand years ago, in the Middle Ages, you might expect to live to be about 31 years old. In 1998, it would be 76, and today it is almost 80 for men, and over 83 for women. Medical advances, better nutrition, and the development of technology are all part of the reason for these changes.
+                <br><br>
+                However, there are still some mysteries about life expectancy, such as why life expectancy is different for men and women. Girls born today will live, on average, nearly four years longer than boys, but we still can't be certain of the reason why this is so. Historically, scientists assumed that this was because men worked jobs that were more physical and dangerous. Another theory was that men were less likely to develop healthy habits, but neither of these theories is easy to prove. A far more probable explanation concerns evolution and our hormones. The male hormone, testosterone, may cause men to "burn out" slightly faster than women. And women also benefit from the healing qualities of estrogen, the female hormone. Estrogen gets rid of poisonous chemicals in the body naturally.
+                <br><br>
+                Life expectancy is also affected by geographical location. According to the CIA World Factbook, Monaco is the country with the world's highest life expectancy at 89.5 years. Singapore and Japan are in second place at 85 years. According to the CIA's rankings, the UK has the 35th highest life expectancy, ranking lower than countries like Iceland, the Netherlands, and New Zealand. Countries at the low end of the list tend to be those that have wars or are very poor. The African country of Chad has the lowest life expectancy in the world, at just over 50.
             </div>
 
-            <!-- Content of Text I -->
-            <div class="prose max-w-none text-gray-700 text-sm/relaxed border-t pt-4">
-                <p>Life expectancy, the number of years people generally live, has changed considerably over time. For example, if you were a male child born in the UK a thousand years ago, in the Middle Ages, you might expect to live to be about 31 years old. In 1998, it would be 76, and today it is almost 80 for men, and over 83 for women. Medical advances, better nutrition, and the development of technology are all part of the reason for these changes.</p>
-                <p>However, there are still some mysteries about life expectancy, such as why life expectancy is different for men and women. Girls born today will live, on average, nearly four years longer than boys, but we still can't be certain of the reason why this is so. Historically, scientists assumed that this was because men worked jobs that were more physical and dangerous. Another theory was that men were less likely to develop healthy habits, but neither of these theories is easy to prove. A far more probable explanation concerns evolution – and our hormones. The male hormone, testosterone, may cause men to “burn out” slightly faster than women. And women also benefit from the healing qualities of estrogen, the female hormone. Estrogen gets rid of poisonous chemicals in the body naturally.</p>
-                <p>Life expectancy is also affected by geographical location. According to the CIA World Factbook, Monaco is the country with the world's highest life expectancy at 89.5 years. Singapore and Japan are in second place at 85 years. According to the CIA's rankings, the UK has the 35th highest life expectancy, ranking lower than countries like Iceland, the Netherlands, and New Zealand. Countries at the low end of the list tend to be those that have wars or are very poor. The African country of Chad has the lowest life expectancy in the world, at just over 50.</p>
+            <div class="question-block">
+                <div class="question-title">Question 1: CHOOSE the right option</div>
+                
+                <div class="question-text">1. How does the writer support the information that life expectancy has changed over the years?</div>
+                <ol class="options-list" id="q1_1_list">
+                    <li>The writer cites the CIA World Factbook.</li>
+                    <li>The writer mentions that life expectancy is different for men and women.</li>
+                    <li class="correct-option">The writer provides specific data for men in the UK from different time periods.</li>
+                    <li>The writer discusses the role of technology in increasing life expectancy.</li>
+                </ol>
+                <button onclick="toggleHighlight('q1_1_list', this)">Show Answer</button>
             </div>
-        </section>
 
-        <!-- Main Review Body -->
-        <main id="exam-container">
-            <!-- Questions will be injected here by JavaScript -->
-        </main>
+            <div class="question-block">
+                <div class="question-text">2. What does the writer think is a more probable reason for women living longer than men?</div>
+                <ol class="options-list" id="q1_2_list">
+                    <li>Women are less likely to work in physically demanding or dangerous jobs.</li>
+                    <li>Women are more likely to adopt healthy habits than men.</li>
+                    <li>Most men usually develop chronic illnesses.</li>
+                    <li class="correct-option">The difference is due to the effects of hormones, specifically testosterone and estrogen.</li>
+                </ol>
+                <button onclick="toggleHighlight('q1_2_list', this)">Show Answer</button>
+            </div>
+
+            <div class="question-block">
+                <div class="question-text">3. What reference does the writer give for the rankings she mentions?</div>
+                <ol class="options-list" id="q1_3_list">
+                    <li>She doesn't give any reference.</li>
+                    <li>She gives the World Health Organization as a reference.</li>
+                    <li class="correct-option">She references the CIA World Factbook.</li>
+                    <li>She references her own research on the topic.</li>
+                </ol>
+                <button onclick="toggleHighlight('q1_3_list', this)">Show Answer</button>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">Question 2: Circle TRUE or FALSE</div>
+                
+                <div class="question-block" style="background-color: #fff; border: none; padding: 0;">
+                    <div class="question-text">1. People lived fewer years in the Middle Ages.</div>
+                    <ol class="options-list" id="q2_1_list">
+                        <li class="correct-option">TRUE</li>
+                        <li>FALSE</li>
+                    </ol>
+                    <button onclick="toggleHighlight('q2_1_list', this)">Show Answer</button>
+                </div>
+
+                <div class="question-block" style="background-color: #fff; border: none; padding: 0;">
+                    <div class="question-text">2. Most countries in North America have a life expectancy above 76 years.</div>
+                    <ol class="options-list" id="q2_2_list">
+                        <li class="correct-option">TRUE</li>
+                        <li>FALSE</li>
+                    </ol>
+                    <button onclick="toggleHighlight('q2_2_list', this)">Show Answer</button>
+                </div>
+
+                <div class="question-block" style="background-color: #fff; border: none; padding: 0;">
+                    <div class="question-text">3. Your life expectancy depends on where you live.</div>
+                    <ol class="options-list" id="q2_3_list">
+                        <li class="correct-option">TRUE</li>
+                        <li>FALSE</li>
+                    </ol>
+                    <button onclick="toggleHighlight('q2_3_list', this)">Show Answer</button>
+                </div>
+
+                <div class="question-block" style="background-color: #fff; border: none; padding: 0;">
+                    <div class="question-text">4. New Zealand has a lower life expectancy than the UK.</div>
+                    <ol class="options-list" id="q2_4_list">
+                        <li>TRUE</li>
+                        <li class="correct-option">FALSE</li>
+                    </ol>
+                    <button onclick="toggleHighlight('q2_4_list', this)">Show Answer</button>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">Question 3: ANSWER according to the text.</div>
+                
+                <div class="question-text" style="font-weight: normal; margin-bottom: 5px;">a) Which theories does the writer discount because they're difficult to prove?</div>
+                <button onclick="toggleAnswer('q3_1', this)">Show Answer</button>
+                <div class="answer" id="q3_1">The theories that men worked more physical and dangerous jobs and that men were less likely to develop healthy habits.</div>
+
+                <div class="question-text" style="font-weight: normal; margin-top: 20px; margin-bottom: 5px;">b) What do countries which rank lower in CIA's rankings have in common?</div>
+                <button onclick="toggleAnswer('q3_2', this)">Show Answer</button>
+                <div class="answer" id="q3_2">They tend to be those that have wars or are very poor.</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Vocabulary (Questions 4-5)</h2>
+
+            <div class="question-block">
+                <div class="question-title">Question 4: Choose the options that best complete the text.</div>
+                
+                <div class="article-box">
+                    Our body is a truly amazing machine! Let's start with your heart. It's a powerful muscle that works all the time. Your heart pumps (0) blood around your body with every (1) ____. This blood carries (2) ____ to all your cells. When you (3) ____, you fill your (4) ____ with air. There, the oxygen is taken from the air and put into your blood. The (5) ____ is the framework of your body. It's made up of (6) ____ and it helps you stand up straight. Your (7) ____ are attached to your bones and help you move. Your (8) ____ is the largest organ in your body and it protects you from the outside world. Think about your mouth. Your (9) ____ helps you taste food. And inside your body, especially in your stomach, there are tiny living things called (10) ____. Some of these are good for you and help you digest your food.
+                </div>
+
+                <div class="question-block" style="background-color: #fff; border: none; padding: 0;">
+                    <div class="question-text">1.</div>
+                    <ol class="options-list" id="q4_1_list">
+                        <li class="correct-option">beat</li>
+                        <li>brain</li>
+                        <li>sense</li>
+                        <li>backbone</li>
+                    </ol>
+                    <button onclick="toggleHighlight('q4_1_list', this)">Show Answer</button>
+                </div>
+                
+                <div class="question-block" style="background-color: #fff; border: none; padding: 0;">
+                    <div class="question-text">2.</div>
+                    <ol class="options-list" id="q4_2_list">
+                        <li>fever</li>
+                        <li>headache</li>
+                        <li>patient</li>
+                        <li class="correct-option">oxygen</li>
+                    </ol>
+                    <button onclick="toggleHighlight('q4_2_list', this)">Show Answer</button>
+                </div>
+                
+                <div class="question-block" style="background-color: #fff; border: none; padding: 0;">
+                    <div class="question-text">3.</div>
+                    <ol class="options-list" id="q4_3_list">
+                        <li>heart</li>
+                        <li class="correct-option">breathe</li>
+                        <li>die</li>
+                        <li>disease</li>
+                    </ol>
+                    <button onclick="toggleHighlight('q4_3_list', this)">Show Answer</button>
+                </div>
+                
+                <div class="question-block" style="background-color: #fff; border: none; padding: 0;">
+                    <div class="question-text">4.</div>
+                    <ol class="options-list" id="q4_4_list">
+                        <li>touch</li>
+                        <li>blood</li>
+                        <li class="correct-option">lungs</li>
+                        <li>sleep</li>
+                    </ol>
+                    <button onclick="toggleHighlight('q4_4_list', this)">Show Answer</button>
+                </div>
+                
+                <div class="question-block" style="background-color: #fff; border: none; padding: 0;">
+                    <div class="question-text">5.</div>
+                    <ol class="options-list" id="q4_5_list">
+                        <li>head</li>
+                        <li>rib</li>
+                        <li class="correct-option">skeleton</li>
+                        <li>skin</li>
+                    </ol>
+                    <button onclick="toggleHighlight('q4_5_list', this)">Show Answer</button>
+                </div>
+
+                <div class="question-block" style="background-color: #fff; border: none; padding: 0;">
+                    <div class="question-text">6.</div>
+                    <ol class="options-list" id="q4_6_list">
+                        <li class="correct-option">bones</li>
+                        <li>hearts</li>
+                        <li>fingers</li>
+                        <li>kidneys</li>
+                    </ol>
+                    <button onclick="toggleHighlight('q4_6_list', this)">Show Answer</button>
+                </div>
+
+                <div class="question-block" style="background-color: #fff; border: none; padding: 0;">
+                    <div class="question-text">7.</div>
+                    <ol class_slist" id="q4_7_list">
+                        <li class="correct-option">muscles</li>
+                        <li>hair</li>
+                        <li>back</li>
+                        <li>bloodstream</li>
+                    </ol>
+                    <button onclick="toggleHighlight('q4_7_list', this)">Show Answer</button>
+                </div>
+
+                <div class="question-block" style="background-color: #fff; border: none; padding: 0;">
+                    <div class="question-text">8.</div>
+                    <ol class="options-list" id="q4_8_list">
+                        <li>stomach</li>
+                        <li>liver</li>
+                        <li>spleen</li>
+                        <li class="correct-option">skin</li>
+                    </ol>
+                    <button onclick="toggleHighlight('q4_8_list', this)">Show Answer</button>
+                </div>
+
+                <div class="question-block" style="background-color: #fff; border: none; padding: 0;">
+                    <div class="question-text">9.</div>
+                    <ol class="options-list" id="q4_9_list">
+                        <li>teeth</li>
+                        <li class="correct-option">tongue</li>
+                        <li>bladder</li>
+                        <li>tonsils</li>
+                    </ol>
+                    <button onclick="toggleHighlight('q4_9_list', this)">Show Answer</button>
+                </div>
+
+                <div class="question-block" style="background-color: #fff; border: none; padding: 0;">
+                    <div class="question-text">10.</div>
+                    <ol class="options-list" id="q4_10_list">
+                        <li>intestines</li>
+                        <li>viruses</li>
+                        <li class="correct-option">bacteria</li>
+                        <li>heartburn</li>
+                    </ol>
+                    <button onclick="toggleHighlight('q4_10_list', this)">Show Answer</button>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">Question 5: Use the words from the box to REWRITE the sentences...</div>
+                <div class="word-bank" style="column-count: 1;">
+                    hang out | put off | run out of | move up | is looking forward to
+                </div>
+                
+                <div class="original-sentence">1. The trip was delayed due to the heavy rain forecast.</div>
+                <button onclick="toggleAnswer('q5_1', this)">Show Answer</button>
+                <div class="answer" id="q5_1">The trip was <b>put off</b> due to the heavy rain forecast.</div>
+                
+                <div class="original-sentence" style="margin-top: 20px;">2. I like to spend some time at the mall with my friends.</div>
+                <button onclick="toggleAnswer('q5_2', this)">Show Answer</button>
+                <div class="answer" id="q5_2">I like to <b>hang out</b> at the mall with my friends.</div>
+                
+                <div class="original-sentence" style="margin-top: 20px;">3. We'll have to reschedule the flight earlier if we want to get there for the wedding.</div>
+                <button onclick="toggleAnswer('q5_3', this)">Show Answer</button>
+                <div class="answer" id="q5_3">We'll have to <b>move up</b> the flight if we want to get there for the wedding.</div>
+                
+                <div class="original-sentence" style="margin-top: 20px;">4. Jeremy can't wait for his birthday party this weekend.</div>
+                <button onclick="toggleAnswer('q5_4', this)">Show Answer</button>
+                <div class="answer" id="q5_4">Jeremy <b>is looking forward to</b> his birthday party this weekend.</div>
+                
+                <div class="original-sentence" style="margin-top: 20px;">5. Madeline had to go to the grocery store because she had used all the eggs from the fridge.</div>
+                <button onclick="toggleAnswer('q5_5', this)">Show Answer</button>
+                <div class="answer" id="q5_5">Madeline had to go to the grocery store because she had <b>run out of</b> eggs from the fridge.</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Use of English (Questions 6-7)</h2>
+
+            <div class="question-block">
+                <div class="question-title">Question 6: MATCH the sentences halves.</div>
+
+                <div class="word-bank" style="font-family: Arial, sans-serif; font-size: 1em; line-height: 1.8; float: left; width: 45%; margin-right: 15px; column-count: 1;">
+                    1. If you freeze water,<br>
+                    2. If it rains tomorrow,<br>
+                    3. Tell Mark I said "Hi!"<br>
+                    4. You won't pass the test<br>
+                    5. If the baby cries,
+                </div>
+
+                <div style="width: 50%; float: left;">
+                    <div class="question-line">(&nbsp;<button class="inline-btn" onclick="revealInline('q6_1', this)">Show</button><span id="q6_1" class="inline-answer">4</span>&nbsp;) unless you study.</div>
+                    <div class="question-line">(&nbsp;<button class="inline-btn" onclick="revealInline('q6_2', this)">Show</button><span id="q6_2" class="inline-answer">3</span>&nbsp;) if you see him.</div>
+                    <div class="question-line">(&nbsp;<button class="inline-btn" onclick="revealInline('q6_3', this)">Show</button><span id="q6_3" class="inline-answer">5</span>&nbsp;) she is probably hungry.</div>
+                    <div class="question-line">(&nbsp;<button class="inline-btn" onclick="revealInline('q6_4', this)">Show</button><span id="q6_4" class="inline-answer">1</span>&nbsp;) it turns into ice.</div>
+                    <div class="question-line">(&nbsp;<button class="inline-btn" onclick="revealInline('q6_5', this)">Show</button><span id="q6_5" class="inline-answer">2</span>&nbsp;) we will cancel the picnic.</div>
+                </div>
+                <div style="clear: both;"></div> </div>
+
+            <div class="question-block">
+                <div class="question-title">Question 7: COMPLETE the sentences...</div>
+                
+                <div class="question-line">1. If I had a lot of money, I <span class="gap">________</span> (travel) the world. <button class="inline-btn" onclick="revealInline('q7_1', this)">Show</button> <span id="q7_1" class="inline-answer">would travel</span></div>
+                <div class="question-line">2. They wouldn't have missed the train if they <span class="gap">________</span> (leave) earlier. <button class="inline-btn" onclick="revealInline('q7_2', this)">Show</button> <span id="q7_2" class="inline-answer">had left</span></div>
+                <div class="question-line">3. She would be happier if she <span class="gap">________</span> (not work) so much. <button class="inline-btn" onclick="revealInline('q7_3', this)">Show</button> <span id="q7_3" class="inline-answer">didn't work / did not work</span></div>
+                <div class="question-line">4. If we <span class="gap">________</span> (live) closer to the beach, we would go swimming every day. <button class="inline-btn" onclick="revealInline('q7_4', this)">Show</button> <span id="q7_4" class="inline-answer">lived</span></div>
+                <div class="question-line">5. If I <span class="gap">________</span> (know) you were coming, I would have baked a cake. <button class="inline-btn" onclick="revealInline('q7_5', this)">Show</button> <span id="q7_5" class="inline-answer">had known</span></div>
+            </div>
+        </div>
 
     </div>
 
     <script>
-        // Array of data containing all questions and formatted answers
-        const examData = [
-            // --- READING PART ---
-            {
-                section: "Reading (Objective)",
-                question: "Question 1 (CHOOSE the right option according to the text.)",
-                items: [
-                    {
-                        q: "1. How does the writer support the information that life expectancy has changed over the years?",
-                        options: [
-                            "The writer cites the CIA World Factbook.",
-                            "The writer mentions that life expectancy is different for men and women.",
-                            "The writer provides specific data for men in the UK from different time periods. ",
-                            "The writer discusses the role of technology in increasing life expectancy."
-                        ],
-                        answer: "The writer provides specific data for men in the UK from different time periods. ",
-                        rationale: "The text mentions a man born in the UK in the Middle Ages (31 years), in 1998 (76 years), and today (almost 80 years)."
-                    },
-                    {
-                        q: "2. What does the writer think is a more probable reason for women living longer than men?",
-                        options: [
-                            "Women are less likely to work in physically demanding or dangerous jobs.",
-                            "Women are more likely to adopt healthy habits than men.",
-                            "Most men usually develop chronic illnesses.",
-                            "The difference is due to the effects of hormones, specifically testosterone and estrogen."
-                        ],
-                        answer: "The difference is due to the effects of hormones, specifically testosterone and estrogen.",
-                        rationale: "The text states: 'A far more probable explanation concerns evolution – and our hormones.'"
-                    },
-                    {
-                        q: "3. What reference does the writer give for the rankings she mentions?",
-                        options: [
-                            "She doesn’t give any reference.",
-                            "She gives the World Health Organization as a reference.",
-                            "She references the CIA World Factbook.",
-                            "She references her own research on the topic."
-                        ],
-                        answer: "She references the CIA World Factbook.",
-                        rationale: "The text mentions the 'CIA World Factbook' as the source for the rankings."
-                    },
-                ]
-            },
-            {
-                section: "Reading (T/F and Subjective)",
-                question: "Question 2 (Circle TRUE or FALSE, according to the text and the information on the map.)",
-                type: "true_false",
-                items: [
-                    {
-                        q: "People lived fewer years in the Middle Ages.",
-                        answer: "TRUE",
-                        rationale: "The text mentions that life expectancy was about 31 years old in the Middle Ages in the UK."
-                    },
-                    {
-                        q: "Most countries in North America have a life expectancy above 76 years.",
-                        answer: "TRUE",
-                        rationale: "According to the map, the US and Canada (North America) are in the 80+ year ranges."
-                    },
-                    {
-                        q: "Your life expectancy depends on where you live.",
-                        answer: "TRUE",
-                        rationale: "The text states: 'Life expectancy is also affected by geographical location.'"
-                    },
-                    {
-                        q: "New Zealand has a lower life expectancy than the UK.",
-                        answer: "FALSE",
-                        rationale: "The text says the UK ranks 'lower than countries like Iceland, the Netherlands, and New Zealand.'"
-                    },
-                ]
-            },
-            {
-                section: "Reading (Subjective)",
-                question: "Question 3 (ANSWER according to the text.)",
-                type: "subjective",
-                items: [
-                    {
-                        q: "a) Which theories does the writer discount because they’re difficult to prove?",
-                        answer: "The writer discounts the theory that life expectancy differences are because men worked jobs that were more physical and dangerous and the theory that men were less likely to develop healthy habits, stating that neither of these theories is easy to prove.",
-                    },
-                    {
-                        q: "b) What do countries which rank lower in CIA’s rankings have in common?",
-                        answer: "The countries at the low end of the CIA’s rankings tend to be those that are very poor or have wars.",
-                    },
-                ]
-            },
-
-            // --- VOCABULARY PART ---
-            {
-                section: "Vocabulary (Objective)",
-                question: "Question 4 (Choose the options that best complete the text.)",
-                type: "multiple_choice_fill",
-                items: [
-                    { q: "1. Your heart pumps blood around your body with every (_______).", answer: "beat", rationale: "The heart beats." },
-                    { q: "2. This blood carries (_______) to all your cells.", answer: "oxygen", rationale: "Blood carries oxygen." },
-                    { q: "3. When you (_______), you fill your lungs with air.", answer: "breathe", rationale: "Act of breathing." },
-                    { q: "4. ...you fill your (_______) with air.", answer: "lungs", rationale: "Organ where air goes." },
-                    { q: "5. The (_______) is the framework of your body.", answer: "skeleton", rationale: "Bony structure." },
-                    { q: "6. It's made up of (_______)...", answer: "bones", rationale: "The skeleton is made of bones." },
-                    { q: "7. Your (_______) are attached to your bones and help you move.", answer: "muscles", rationale: "Attached to bones for movement." },
-                    { q: "8. Your (_______) is the largest organ in your body...", answer: "skin", rationale: "The largest organ in the body." },
-                    { q: "9. Think about your mouth. Your (_______) helps you taste food.", answer: "tongue", rationale: "Organ of taste." },
-                    { q: "10. ...there are tiny living things called (_______).", answer: "bacteria", rationale: "Many help with digestion." },
-                ]
-            },
-            {
-                section: "Vocabulary (Subjective/Phrasal Verbs)",
-                question: "Question 5 (Use the phrasal verbs to REWRITE the sentences.)",
-                type: "subjective",
-                items: [
-                    { q: "The trip was *delayed* due to the heavy rain forecast.", answer: "The trip was **put off** due to the heavy rain forecast." },
-                    { q: "I like to *spend some time* at the mall with my friends.", answer: "I like to **hang out** at the mall with my friends." },
-                    { q: "We'll have to *reschedule* the flight *earlier* if we want to get there for the wedding.", answer: "We'll have to **move up** the flight if we want to get there for the wedding." },
-                    { q: "Jeremy *can't wait for* his birthday party this weekend.", answer: "Jeremy **is looking forward to** his birthday party this weekend." },
-                    { q: "Madeline had to go to the grocery store because she had *used all the* eggs *from the fridge*.", answer: "Madeline had to go to the grocery store because she had **run out of** eggs." },
-                ]
-            },
-
-            // --- USE OF ENGLISH PART ---
-            {
-                section: "Use of English (Objective/Matching)",
-                question: "Question 6 (MATCH the sentences halves. Zero and First Conditional)",
-                type: "matching",
-                items: [
-                    { q: "If you freeze water,", answer: "it turns into ice.", rationale: "Zero Conditional (Fact)" },
-                    { q: "If it rains tomorrow,", answer: "we will cancel the picnic.", rationale: "First Conditional (Future Possibility)" },
-                    { q: "Tell Mark I said “Hi!”", answer: "if you see him.", rationale: "Imperative + First Conditional" },
-                    { q: "You won't pass the test", answer: "unless you study.", rationale: "First Conditional (Unless...)" },
-                    { q: "If the baby cries,", answer: "she is probably hungry.", rationale: "Zero/First Conditional (Probable Result)" },
-                ]
-            },
-            {
-                section: "Use of English (Subjective/Conditionals)",
-                question: "Question 7 (COMPLETE the sentences with the verbs in parentheses in the correct tense.)",
-                type: "subjective",
-                items: [
-                    { q: "If I had a lot of money, I ____________________ (travel) the world.", answer: "would travel (Second Conditional)" },
-                    { q: "They wouldn't have missed the train if they ____________________ (leave) earlier.", answer: "had left (Third Conditional)" },
-                    { q: "She would be happier if she ____________________ (not work) so much.", answer: "did not work (Second Conditional)" },
-                    { q: "If we ____________________ (live) closer to the beach, we would go swimming every day.", answer: "lived (Second Conditional)" },
-                    { q: "If I ____________________ (know) you were coming, I would have baked a cake.", answer: "had known (Third Conditional)" },
-                ]
-            },
-        ];
-
-        // Function to toggle answer visibility
-        function toggleAnswer(button) {
-            const answerDiv = button.closest('.item-card').querySelector('.answer');
-            const icon = button.querySelector('svg');
-
-            answerDiv.classList.toggle('active');
-
-            if (answerDiv.classList.contains('active')) {
-                button.textContent = 'Hide Answer';
-                icon.classList.remove('rotate-0');
-                icon.classList.add('rotate-180');
+        // === For Multiple Choice (Q1, Q2, Q4) ===
+        function toggleHighlight(listId, buttonElement) {
+            var list = document.getElementById(listId);
+            var isRevealed = list.classList.toggle('revealed');
+            
+            if (isRevealed) {
+                buttonElement.textContent = 'Hide Answer';
             } else {
-                button.textContent = 'Reveal Answer';
-                icon.classList.remove('rotate-180');
-                icon.classList.add('rotate-0');
+                buttonElement.textContent = 'Show Answer';
             }
         }
 
-        // Function to render exam data on the page
-        function renderExam() {
-            const container = document.getElementById('exam-container');
-            let html = '';
+        // === For Subjective/Block (Q3, Q5) ===
+        function toggleAnswer(answerId, buttonElement) {
+            var answerElement = document.getElementById(answerId);
+            var currentDisplay = window.getComputedStyle(answerElement).display;
 
-            examData.forEach((sectionData, sectionIndex) => {
-                // Start of Section
-                html += `
-                    <div class="mb-12">
-                        <h2 class="text-xl sm:text-2xl font-bold text-gray-800 border-b-2 border-green-500 pb-2 mb-6 mt-8">${sectionData.section}</h2>
-                        <h3 class="text-lg font-semibold text-gray-700 mb-4">${sectionData.question}</h3>
-                `;
-
-                sectionData.items.forEach((item, itemIndex) => {
-                    const id = `q${sectionIndex}-${itemIndex}`;
-                    let itemContent = '';
-
-                    // Logic for displaying the question/item, depending on the type
-                    if (sectionData.type === 'true_false') {
-                        // T/F Type
-                        itemContent = `<p class="font-medium text-gray-900">${item.q} <span class="font-normal text-sm text-gray-500">(T/F)</span></p>`;
-                    } else if (sectionData.type === 'multiple_choice_fill') {
-                        // Multiple Choice Fill Type (e.g., Vocabulary)
-                        // Note: The question string 'q' is now correctly using (_______) placeholder instead of the answer.
-                        itemContent = `<p class="font-medium text-gray-900">${item.q}</p>`;
-                    } else if (sectionData.type === 'matching') {
-                        // Matching Type
-                         itemContent = `<p class="font-medium text-gray-900">${item.q}</p>`;
-                    } else {
-                        // Standard Multiple Choice and Subjective
-                        itemContent = `<p class="font-medium text-gray-900">${item.q}</p>`;
-                        if (item.options) {
-                             itemContent += `
-                                <ul class="mt-2 space-y-1 text-gray-600 list-disc list-inside ml-4 text-sm">
-                                    ${item.options.map(opt => `<li>${opt}</li>`).join('')}
-                                </ul>
-                            `;
-                        }
-                    }
-
-                    // Item Card (Question + Button + Hidden Answer)
-                    html += `
-                        <div class="item-card bg-gray-50 p-4 rounded-xl shadow-sm mb-4 border border-gray-200">
-                            <!-- Question/Item -->
-                            ${itemContent}
-
-                            <!-- Action Button -->
-                            <button onclick="toggleAnswer(this)" class="mt-3 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-150 ease-in-out">
-                                Reveal Answer
-                                <svg class="ml-2 -mr-1 h-4 w-4 transform transition-transform duration-300 rotate-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-
-                            <!-- Hidden Answer -->
-                            <div class="answer mt-2 border-t pt-0 border-green-300 text-base">
-                                <p class="text-green-800 font-bold mb-1">Answer:</p>
-                                <p class="text-green-700">${item.answer}</p>
-                                ${item.rationale ? `<p class="text-gray-500 text-sm mt-1 italic">(Rationale: ${item.rationale})</p>` : ''}
-                            </div>
-                        </div>
-                    `;
-                });
-
-                // End of Section
-                html += `</div>`;
-            });
-
-            container.innerHTML = html;
+            if (currentDisplay === 'none') {
+                answerElement.style.display = 'block';
+                buttonElement.textContent = 'Hide Answer';
+            } else {
+                answerElement.style.display = 'none';
+                buttonElement.textContent = 'Show Answer';
+            }
         }
 
-        // Initialize rendering upon page load
-        window.onload = renderExam;
+        // === For One-by-one (Q6, Q7) ===
+        function revealInline(spanId, buttonElement) {
+            var answerSpan = document.getElementById(spanId);
+            answerSpan.style.display = 'inline'; // Show the answer
+            buttonElement.style.display = 'none'; // Hide the button
+            
+            // This is for the matching questions (Q6)
+            var parentDiv = buttonElement.parentNode;
+            if (parentDiv && parentDiv.classList.contains('question-line')) {
+                parentDiv.innerHTML = parentDiv.innerHTML.replace('(&nbsp;', '(').replace('&nbsp;)', ')');
+            }
+        }
     </script>
+
 </body>
 </html>
